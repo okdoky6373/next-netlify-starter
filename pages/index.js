@@ -1,23 +1,28 @@
-import Head from 'next/head'
-import Header from '@components/Header'
-import Footer from '@components/Footer'
-
-export default function Home() {
-  return (
-    <div className="container">
-      <Head>
-        <title>Next.js Starter!</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main>
-        <Header title="Welcome to my app!" />
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-      </main>
-
-      <Footer />
-    </div>
-  )
+<!DOCTYPE html>
+<html>
+<head>
+<title>i have your location</title>
+<script>
+function showCoordinates() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var latitude = position.coords.latitude;
+      var longitude = position.coords.longitude;
+      
+      var coordinatesText = "Latitude: " + latitude + "<br>Longitude: " + longitude;
+      document.getElementById("coordinates").innerHTML = coordinatesText;
+    });
+  } else {
+    document.getElementById("coordinates").innerHTML = "Geolocation is not supported by this browser.";
+  }
 }
+</script>
+</head>
+<body>
+
+<h1>Coordinates Viewer</h1>
+<button onclick="showCoordinates()">Show My Coordinates</button>
+<p id="coordinates"></p>
+
+</body>
+</html>
